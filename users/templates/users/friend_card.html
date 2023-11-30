@@ -1,0 +1,76 @@
+  {% load static%}
+  <div class="card border" id="{{friend.id}}">
+    <div class="card-body lh-sm fs-sm" style="padding-left:1px">
+      <a href="{{friend.get_absolute_url}}"class="stretched-link" ></a>
+      <small class="text-muted" style="margin-left:35px">
+        {%if  friend in user.followers.all%}
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-person-circle" viewBox="0 0 16 16">
+            <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0z"/>
+            <path fill-rule="evenodd" d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8zm8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1z"/>
+          </svg>  Follows You
+        {%endif%}
+        </small>
+        <div class="row ">
+          <div class="col-2" style="">
+            <span >
+                {%if friend.user_pic%}
+                <img src="{{friend.user_pic.url}}"
+                class="rounded-circle"
+                width=35
+                height=35
+                placeholder="gfhfhfh"
+                alt="{{friend.username}}"
+                >
+                {%else%}
+                <img src="{%static 'images/default_profile_pic.png'%}"
+                class="rounded-circle"
+                width=35
+                height=35
+                alt="{{friend.username}}"
+                >
+               {%endif%}
+              </span>
+          </div>
+          <div class="col" style="padding-left:3px">
+            <strong class="" style="">{{friend}}</strong>
+            
+             <! Followin and Unfollow>
+            {%if user in friend.followers.all%}
+                {% if user == friend %}
+                <button type="submit" class="btn btn-success rounded-pill
+              position-absolute  end-0 
+                "> He's Following Me</button>
+                {% else %}
+                <a href="{%url "follow-friend" friend.id%}?next={{request.path|urlencode}}#{{friend.id}}">
+                <button type="submit" class="btn btn-outline-dark rounded-pill stretched-link
+                  position-absolute  position-relative end-0 
+                ">Following</button>
+                {% endif %}
+            </a>
+            {%else%}
+            {% if user == friend %}
+            <button type="submit" class="btn btn-success rounded-pill
+              position-absolute  position-relative end-0 
+            "> Following Me</button>
+            {% else %}
+            <a href="{%url "follow-friend" friend.id%}?next={{request.path|urlencode}}#{{friend.id}}">
+            <button type="submit" class="btn btn-dark rounded-pill stretched-link
+              position-absolute  position-relative end-0 
+            ">Follow Back</button>
+            {% endif %}
+            </a>
+            {%endif%}
+            <div class=""style="padding-top:px;margin-top:px"><span class="text-muted" style="">@{{friend.username}}</span></div>
+            <div class="">
+              {% if friend.profile.title %}
+                {{friend.profile.title}}
+              {%else%}
+                {% if friend.profile.address %}
+                  {{friend.profile.address}}
+                  {% endif %}
+              {% endif %}
+            </div>
+          </div>
+        </div>
+    </div>
+  </div>

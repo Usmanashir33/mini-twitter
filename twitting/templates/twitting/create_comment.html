@@ -1,0 +1,50 @@
+{%extends 'twitting/base_generic.html'%}
+{%block content%}
+{%load static%}
+<div class="card border-0 position-relative" style="width: rem;">
+    <form action = "" method ="post" enctype="multipart/form-data">
+        {%csrf_token%}
+        <div class="card-header bg-white">
+            <button type="button" class="btn-close" data-bs-dismiss="" aria-label="Close"></button>
+            <button type="submit" class="btn btn-sm btn-primary position-absolute end-0 rounded-pill">Reply</button>
+            <input type="hidden" name="next" value={{request.GET.next}} />
+        </div>
+        <div class="card-body">
+            <div class="row">
+                <div class="col-auto">
+                    <a class="link-dark stretched-link" aria-current="page" style="position: relative;"
+                    href= "{{user.get_absolute_url}}">
+                    <span >
+                    {%if user.user_pic%}
+                    <img src="{{user.user_pic.url}}"
+                    class=" card-img-left rounded-circle"
+                    width=35
+                    height=35
+                    placeholder="gfhfhfh"
+                    alt="{{post.user.username}}"
+                    >
+                    {%else%}
+                    <img src="{%static 'images/default_profile_pic.png'%}"
+                    class="card-img-left rounded-circle"
+                    width=35
+                    height=35
+                    alt="{{post.user.username}}"
+                    >
+                   {%endif%}
+                  </span>
+                </a>
+                </div>    
+                <div class="col-6">
+                    Replaying to <a style="text-decoration:none"href="{{comment.user.get_absolute_url}}">{{comment.user}}</a>
+                    <table>
+                        {{form.text}}
+                    </table>
+                </div>    
+            <div>
+        </div>
+        <div class="card-footer bg-white" >
+            {{form.comment_file}}
+        </div>
+    </form>
+    </div>
+{%endblock%}

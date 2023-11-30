@@ -1,0 +1,149 @@
+{%extends "twitting/base_generic.html"%}
+
+{%block content%}
+{%load static%}
+<div class="" style="max-width:40rem">
+{% if messages%}
+  {%for message in messages%}
+  <div class="alert alert-success alert-dismissible fade show" role="alert">
+    <strong>{{message}}</strong>
+    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+  </div>
+  {%endfor%}
+{%endif%}
+
+{%if profile%}
+  <div class="card">
+  <div class="mx-auto" style="">
+    {%if profile.user_pic%}
+      <img src="{{profile.user_pic.url}}"
+      class=""
+      width=100%
+      height=500
+      max-width=75%
+      max-height=75%
+      alt="{{profile}}"
+      >
+    {%else%}
+      <img src="{%static 'images/default_profile_pic.png'%}"
+      class=""
+      width=100%
+      height=250
+      alt="{{profile}}"
+      >
+    {%endif%}
+  </div>
+    <div class="card-body">
+      <strong>{{profile}}</strong>
+      <span class=" position-absolute end-0 ">
+        <! Edit Profile Only For Profile Owner>
+      <a href="{%url 'profile-update' profile.id%}">
+        <button type="submit" class="btn btn-outline-secondary rounded-pill
+        ">Edit Profile</button>
+      </a>
+      <! Followin and Unfollow>
+      {%if  user in profile.followers.all%}
+        {% if user == profile %}
+        {%else%}
+        <a href="{%url "follow-friend" profile.id%}?next={{request.path|urlencode}}">
+        <button type="submit" class="btn btn-outline-dark rounded-pill
+        ">Following</button>
+        </a>
+        {%endif%}
+      {%else%}
+        {% if user == profile %}
+        {%else%}
+        <a href="{%url 'follow-friend' profile.id%}?next={{request.path|urlencode}}">
+        <button type="submit" class="btn btn-dark rounded-pill
+        ">Follow</button>
+        </a>
+        {%endif%}
+
+      {%endif%}
+  </span>
+        <p class=""style="margin-bottom:2px;margin-top:1px">@{{profile.username}}</p>
+      <span><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-geo-alt" viewBox="0 0 16 16">
+        <path d="M12.166 8.94c-.524 1.062-1.234 2.12-1.96 3.07A31.493 31.493 0 0 1 8 14.58a31.481 31.481 0 0 1-2.206-2.57c-.726-.95-1.436-2.008-1.96-3.07C3.304 7.867 3 6.862 3 6a5 5 0 0 1 10 0c0 .862-.305 1.867-.834 2.94zM8 16s6-5.686 6-10A6 6 0 0 0 2 6c0 4.314 6 10 6 10z"/>
+        <path d="M8 8a2 2 0 1 1 0-4 2 2 0 0 1 0 4zm0 1a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/>
+      </svg>
+      {{profile.profile.address}}</span>
+      <span><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-balloon" viewBox="0 0 16 16">
+        <path fill-rule="evenodd" d="M8 9.984C10.403 9.506 12 7.48 12 5a4 4 0 0 0-8 0c0 2.48 1.597 4.506 4 4.984ZM13 5c0 2.837-1.789 5.227-4.52 5.901l.244.487a.25.25 0 1 1-.448.224l-.008-.017c.008.11.02.202.037.29.054.27.161.488.419 1.003.288.578.235 1.15.076 1.629-.157.469-.422.867-.588 1.115l-.004.007a.25.25 0 1 1-.416-.278c.168-.252.4-.6.533-1.003.133-.396.163-.824-.049-1.246l-.013-.028c-.24-.48-.38-.758-.448-1.102a3.177 3.177 0 0 1-.052-.45l-.04.08a.25.25 0 1 1-.447-.224l.244-.487C4.789 10.227 3 7.837 3 5a5 5 0 0 1 10 0Zm-6.938-.495a2.003 2.003 0 0 1 1.443-1.443C7.773 2.994 8 2.776 8 2.5c0-.276-.226-.504-.498-.459a3.003 3.003 0 0 0-2.46 2.461c-.046.272.182.498.458.498s.494-.227.562-.495Z"/>
+      </svg>
+          Born {{profile.profile.date_of_birth}}</span>
+      <span>{{profile.register_date}}</span>
+      <div class="">
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-calendar3-week" viewBox="0 0 16 16">
+          <path d="M14 0H2a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2zM1 3.857C1 3.384 1.448 3 2 3h12c.552 0 1 .384 1 .857v10.286c0 .473-.448.857-1 .857H2c-.552 0-1-.384-1-.857V3.857z"/>
+          <path d="M12 7a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm-5 3a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm2-3a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm-5 3a1 1 0 1 0 0-2 1 1 0 0 0 0 2z"/>
+        </svg>
+        <span class="text-black" style="">Joined On : {{profile.date_joined}}</span>
+        <br>
+        <span>
+          <a  style="text-decoration:none;" class="text-black mr-2"href="{%url 'followings' profile.id%}">
+            <b>{{profile.total_followings}}</b> Following{{profile.total_followings|pluralize}}
+          </a>
+           <a style="text-decoration:none;" class="text-black"href="{%url 'followers' profile.id%}">
+            <b>{{profile.total_followers}}</b> Follower{{profile.total_followers|pluralize}}
+          </a>
+        </span>
+
+        <div id ="profile" style="margin-top:5px;margin-left:30px">
+          <p><strong>User Id : </strong>{{profile.id}}</p>
+          <p><strong>Gender : </strong>{{profile.gender}}</p>
+          <p><strong>Email : </strong>{{profile.email}}</p>
+          <p><strong>Phone Number : </strong>{{profile.phone_number}}</p>
+      </div>
+      </div>
+      <ul class="nav nav-justified border-0">
+        <li class="nav-item">
+          <div
+            class="text-black mt-2"
+            data-bs-toggle="collapse"
+            data-bs-target="#collapsePosts"
+            aria-expanded="false"
+            aria-controls="collapsePosts"
+          >
+          <! start postcard list>
+            Post {{no_all_posts}}
+           <! end post card list>
+          </div>
+          <div class="collapse" id="collapsePosts">
+            <div class="">
+            {% for post in profile_posts_and_reposts %}
+              {% include "twitting/post_card.html" with post=post %}
+              <br>
+            {% empty %}
+              {{profile.user}}
+            {% endfor %} 
+            </div>
+          </div>
+        </li>
+        
+        <li class="nav-item">
+          <div
+            class="text-muted mt-2"
+            data-bs-toggle="collapse"
+            href="#collapseLikes"
+            aria-expanded="true"
+            aria-controls="collapseLikes"
+          >
+            Likes
+          </div>
+          <div class="collapse" id="collapseLikes">
+            <div class="card card-body">Likes Page Elements</div>
+          </div>
+        </li>
+      </ul>
+    </div>
+  </div>
+
+
+{%else%}
+    <h3> You Dont set profile Yet </h3>
+    <a href="{%url 'fill-profile'%}">Add profile</a>
+{%endif%}
+<br>
+<br>
+</div>
+{%endblock%}

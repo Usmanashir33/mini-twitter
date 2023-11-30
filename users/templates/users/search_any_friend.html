@@ -1,0 +1,20 @@
+{%extends "twitting/base_generic.html"%}
+{%block content%}
+{%load static%}
+<div class="card border-0 position-relative" style="width: rem;">
+    <form action = "" method ="post" enctype="multipart/form-data">
+        {%csrf_token%}
+        <div class="card-header bg-white">
+            <div class="input-group border-0">
+                <button type="button" class="btn-close"style="margin-top:5px" data-bs-dismiss=""></button>
+                <input type="text" class="form-control border-0" style="caret-color:green;box-shadow:none" autofocus
+                placeholder="Search Any Friend" name="search" required>
+                <button class="btn btn-primary border-0 btn-md" type="submit">Search</button>
+            </div>
+        </div>
+    </form>
+</div>
+{% for friend in friends%}
+    {%include 'users/friend_card.html'%}
+{% endfor %}
+{% endblock content %}

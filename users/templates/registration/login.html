@@ -1,0 +1,45 @@
+{%extends "twitting/base_generic.html"%}
+{%block content%}
+<br>
+<br>
+<div class="mx-auto" style="max-width: 30rem">
+    <div class="card center mb-3" style="max-width: 30rem;" >
+      <div class="card-body text-black">
+        {%if form.errors%}
+        <div class="alert alert-danger d-flex align-items-center" role="alert">
+          <div>
+            Username or Password Not Correct!
+          </div>
+        </div>
+        {%endif%}
+        <h4 class="card-title mb-3">Login Here With Details</h4>
+        <form action = "" method="post">
+          {%csrf_token%}
+      <div class="mb-3 row">
+          <div class="col-sm-18">
+            <input type="text" class="form-control" name="username"  placeholder="Enter Your Username (e.g usmanashir)">
+          </div>
+        </div>
+        <div class="mb-3 row">
+          <div class="col-sm-18">
+            <input type="password" class="form-control" name="password" placeholder="Enter your Password">
+          </div>
+        </div>
+        <input type="hidden" name="next" value={{next}}>
+        <div class="d-grid gap-2 col-18 mx-auto">
+          <button type="submit" class="btn btn-xl btn-primary">Login</button>
+        </div>
+        <hr>
+        <div class="mb row" >
+        <div class="col ">
+          <a style="text-decoration:none" class="text-muted " href="{%url 'password_reset'%}">Forget Password? </a>   
+        </div>
+        <div class="col-5">
+          <a style="text-decoration:none" class="text-muted " href="{%url 'register'%}">
+            <span align> Don't have account?</span> 
+          </a>   
+        </div>
+        </div>
+    </divclass=>
+  </div>
+{%endblock%}

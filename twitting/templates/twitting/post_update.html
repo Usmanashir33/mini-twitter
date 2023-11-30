@@ -1,0 +1,81 @@
+{%extends "twitting/base_generic.html"%}
+{%block content%}
+{% load static%}
+
+{% include "twitting/nav_top.html"%}
+{% if messages%}
+  {%for message in messages%}
+  <div class="alert alert-sm alert-success alert-dismissible fade show" role="alert">
+    <strong>{{message}}</strong>
+    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+  </div>
+  {%endfor%}
+{%endif%}
+    <div class="card border-0 position-relative" style="width: rem;">
+        <form action = "" method ="post" enctype="multipart/form-data">
+            {%csrf_token%}
+            <input type="hidden" name="next" value="{{request.GET.next}}"/>
+            <div class="card-header bg-white">
+                <button type="button" class="btn-close" data-bs-dismiss="" aria-label="Close"></button>
+                <button type="submit" class="btn btn-sm btn-primary position-absolute end-0
+                 rounded-pill">Update</button>
+            </div>
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-auto">
+                        <a class="link-dark stretched-link" aria-current="page" style="position: relative;"
+                    href= "{{post.user.get_absolute_url}}">
+                    <span >
+                    {%if user.user_pic%}
+                    <img src="{{user.user_pic.url}}"
+                    class=" card-img-left rounded-circle"
+                    width=35
+                    height=35
+                    placeholder="gfhfhfh"
+                    alt="{{post.user.username}}"
+                    >
+                    {%else%}
+                    <img src="{%static 'images/default_profile_pic.png'%}"
+                    class="card-img-left rounded-circle"
+                    width=35
+                    height=35
+                    alt="{{post.user.username}}"
+                    >
+                   {%endif%}
+                  </span>
+                </a>
+                    </div>    
+                    <div class="col-6">
+                        <table>
+                            {{form.text}}
+                        </table>
+                    </div>    
+                <div>
+            </div>
+            <div class="card-footer bg-white" >
+                <div>
+                    {%if post.post_file%}
+                      <img src="{{post.post_file.url}}"
+                      class=" card-img-left image-fluid rounded "
+                      width=100
+                      height=100s
+                      placeholder="gfhfhfh"
+                      alt="Post Pic Dont Show"
+                      >
+                      <! clear current>
+                      <div class="form-check">
+                        <input class="form-check-input" type="checkbox" value="delete" id="out_picture" name ="clear_pic">
+                        <label class="form-check-label" for="out_picture">
+                          Clear Pic
+                        </label>
+                      </div>
+                      {{form.post_file}}
+                      {%else%}
+                      {{form.post_file}}
+                     {%endif%}
+                </div>
+            </div>
+            
+        </form>
+        </div>
+{%endblock%}

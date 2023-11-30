@@ -1,0 +1,165 @@
+        {%load static%}
+        <nav class="navbar bg-white  sticky-top" style="margin-bottom:11px">
+            <div class="container-fluid">
+             
+              <div
+                data-bs-toggle="offcanvas"
+                data-bs-target="#offcanvasNavbar"
+                aria-controls="offcanvasNavbar"
+              >
+               <span >
+                  {%if user.user_pic%}
+                  <img src="{{user.user_pic.url}}"
+                  class="rounded-circle"
+                  width=47
+                  height=47
+                  placeholder="gfhfhfh"
+                  alt="{{user.username}}"
+                  >
+                  {%else%}
+                  <img src="{%static 'images/default_profile_pic.png'%}"
+                  class="rounded-circle"
+                  width=47
+                  height=47
+                  alt="{{user.username}}"
+                  >
+                 {%endif%}
+                </span>
+                </div>
+                <div class=" posistion-relative mx-auto" style="">
+                  <svg xmlns="http://www.w3.org/2000/svg" height="45px" width="45px" viewBox="0 0 512 512"><!--! Font Awesome Free 6.4.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. -->
+                    <path d="M389.2 48h70.6L305.6 224.2 487 464H345L233.7 318.6 106.5 464H35.8L200.7 275.5 26.8 48H172.4L272.9 180.9 389.2 48zM364.4 421.8h39.1L151.1 88h-42L364.4 421.8z"/></svg>
+                </div>
+            </div>
+              <div
+                class="offcanvas offcanvas-start"
+                tabindex="-1"
+                id="offcanvasNavbar"
+                aria-labelledby="offcanvasNavbarLabel"
+              >
+                <div class="offcanvas-header pt-1">
+                  <a class="nav-link" href="{{user.get_absolute_url}}">
+                    <span >
+                      {%if user.user_pic%}
+                      <img src="{{user.user_pic.url}}"
+                      class="rounded-circle"
+                      width=35
+                      height=35
+                      placeholder="gfhfhfh"
+                      alt="{{user}}"
+                      >
+                      {%else%}
+                      <img src="{%static 'images/default_profile_pic.png'%}"
+                      class="rounded-circle"
+                      width=35
+                      height=35
+                      alt="{{user}}"
+                      >
+                     {%endif%}
+                    </span>
+                  </a>
+                    ...
+                </div>
+                <div class="offcanvas-body"style="padding-bottom:1px;padding-top:1px">
+                  <div class="">
+                  <a  style="text-decoration:none;" href="">
+                      <strong class="text-black"style="padding-bottom:1px;padding-top:1px">{{user}}</strong>
+                      <p class="text-muted" style="">@{{user.username}}</p>
+                  </a>
+
+                  <a  style="text-decoration:none;" href="">
+                    <p class="text-muted" style="">
+                      <span>
+                        <a  style="text-decoration:none;" class="text-black" href="{%url 'followings' user.id%}">
+                          {{user.total_followings}} Following{{user.total_followings|pluralize}}
+                        </a>
+                         <a style="text-decoration:none;" class="text-black"href="{%url 'followers' user.id%}">
+                          {{user.total_followers}} Follower{{user.total_followers|pluralize}}
+                        </a>
+                      </span>
+                    </p>
+                  </a>
+                  <hr>
+                  </div>
+                  <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
+                    <li class="nav-item">
+                      <a class="nav-link active" aria-current="page" href=""
+                        >
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-person" viewBox="0 0 16 16">
+                          <path d="M8 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6Zm2-3a2 2 0 1 1-4 0 2 2 0 0 1 4 0Zm4 8c0 1-1 1-1 1H3s-1 0-1-1 1-4 6-4 6 3 6 4Zm-1-.004c-.001-.246-.154-.986-.832-1.664C11.516 10.68 10.289 10 8 10c-2.29 0-3.516.68-4.168 1.332-.678.678-.83 1.418-.832 1.664h10Z"/>
+                        </svg>
+                        <strong> Profile</strong></a
+                      >
+                    </li>
+                    <li class="nav-item">
+                      <a class="nav-link" href="#"
+                        >
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-check-circle" viewBox="0 0 16 16">
+                          <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
+                          <path d="M10.97 4.97a.235.235 0 0 0-.02.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-1.071-1.05z"/>
+                        </svg>
+                        <strong>pic+Twitter Blue</strong></a
+                      >
+                    </li>
+                    <li class="nav-item">
+                      <a class="nav-link" href="#">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-card-list" viewBox="0 0 16 16">
+                          <path d="M14.5 3a.5.5 0 0 1 .5.5v9a.5.5 0 0 1-.5.5h-13a.5.5 0 0 1-.5-.5v-9a.5.5 0 0 1 .5-.5h13zm-13-1A1.5 1.5 0 0 0 0 3.5v9A1.5 1.5 0 0 0 1.5 14h13a1.5 1.5 0 0 0 1.5-1.5v-9A1.5 1.5 0 0 0 14.5 2h-13z"/>
+                          <path d="M5 8a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 0 1h-7A.5.5 0 0 1 5 8zm0-2.5a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 0 1h-7a.5.5 0 0 1-.5-.5zm0 5a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 0 1h-7a.5.5 0 0 1-.5-.5zm-1-5a.5.5 0 1 1-1 0 .5.5 0 0 1 1 0zM4 8a.5.5 0 1 1-1 0 .5.5 0 0 1 1 0zm0 2.5a.5.5 0 1 1-1 0 .5.5 0 0 1 1 0z"/>
+                        </svg>
+                        <strong>pic+List</strong></a>
+                    </li>
+                    <li class="nav-item">
+                      <a class="nav-link" href="#">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-bookmark" viewBox="0 0 16 16">
+                          <path d="M2 2a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v13.5a.5.5 0 0 1-.777.416L8 13.101l-5.223 2.815A.5.5 0 0 1 2 15.5V2zm2-1a1 1 0 0 0-1 1v12.566l4.723-2.482a.5.5 0 0 1 .554 0L13 14.566V2a1 1 0 0 0-1-1H4z"/>
+                        </svg>
+                      <strong>pic+Bookmarks</strong></a>
+                    </li>
+                    
+                    <br />
+                    <hr />
+                    <li class="nav-item dropdown">
+                      <a
+                        class="nav-link dropdown-toggle"
+                        href="#"
+                        role="button"
+                        data-bs-toggle="dropdown"
+                        aria-expanded="false"
+                      >
+                        <strong> Settings & Support</strong>
+                      </a>
+                      <ul class="dropdown-menu border-green">
+                        <li class="dropdown-item"><strong> Settings</strong></li>
+                          <ul>
+                            {%if user.is_authenticated%}
+                            <li><a style="text-decoration:none" href={%url 'log-out'%}><strong>Logout</strong></a></li>
+                            {%endif%}
+                            
+                            
+                          </ul>
+                        <li>
+                        <li class="dropdown-item"><strong>Contact Us Here</strong></li>
+                          <ul>
+                            <li><a style="text-decoration:none" href="mailto:coinermk@gmail.com">Send Us Email</a></li>
+                            <li><a style="text-decoration:none" href="https://wa.me/+2348166997172">Whatsapp</a></li>
+                          </ul>
+                        <li>
+                        
+                        </li>
+                      
+                    
+                  </ul>
+                </div>
+                <div class="offcanvas-footer bg-transparant  text-black" >
+                  <div class="mb-4" style="margin-left:14px;">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-brightness-high ml-2"  viewBox="0 0 16 16">
+                    <path d="M8 11a3 3 0 1 1 0-6 3 3 0 0 1 0 6zm0 1a4 4 0 1 0 0-8 4 4 0 0 0 0 8zM8 0a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-1 0v-2A.5.5 0 0 1 8 0zm0 13a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-1 0v-2A.5.5 0 0 1 8 13zm8-5a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1 0-1h2a.5.5 0 0 1 .5.5zM3 8a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1 0-1h2A.5.5 0 0 1 3 8zm10.657-5.657a.5.5 0 0 1 0 .707l-1.414 1.415a.5.5 0 1 1-.707-.708l1.414-1.414a.5.5 0 0 1 .707 0zm-9.193 9.193a.5.5 0 0 1 0 .707L3.05 13.657a.5.5 0 0 1-.707-.707l1.414-1.414a.5.5 0 0 1 .707 0zm9.193 2.121a.5.5 0 0 1-.707 0l-1.414-1.414a.5.5 0 0 1 .707-.707l1.414 1.414a.5.5 0 0 1 0 .707zM4.464 4.465a.5.5 0 0 1-.707 0L2.343 3.05a.5.5 0 1 1 .707-.707l1.414 1.414a.5.5 0 0 1 0 .708z"/>
+                  </svg>
+                </div>
+                </div>
+              </div>
+            </div>
+          </nav>
+          
+          

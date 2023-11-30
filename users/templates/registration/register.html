@@ -1,0 +1,45 @@
+{%extends 'twitting/base_generic.html'%}
+{%block content%}
+
+    {%if form.errors%}
+        <div class="mx-auto" style="max-width: 30rem;">
+        <div class="alert alert-danger d-sm-flex p-1 align-items-center" role="alert">
+            {{form.errors}}
+            {{form.username.errors}}
+            {{form.email.errors}}
+            {%if form.password2.errors%}
+            <li> Check your Passwords rule</li>
+            {%endif%}
+        </div>
+        </div>
+    {%endif%}
+    <div class="mx-auto" style="max-width: 30rem;">
+    <div class="card text-center mx-auto border-primary mb-5">
+        <div class="card-header mb-2 bg-primary opacity-75 text-white">
+          <h2> Wellcome To Mini Twitter<h2>
+        </div>
+        <div class='card-body text-black '>
+          <form  class="mb-3" action="" method="post" enctype="multipart/form-data">
+            {%csrf_token%}
+            <table>
+            {{form.username}}
+            {{form.first_name}}
+            <input class="form-control mb-4" type="text" name="middle_name" placeholder="Middle name(Optional)">
+            {{form.last_name}}
+            {{form.gender}}
+            {{form.phone_number}}
+            {{form.email}}
+            {{form.password1}}
+            {{form.password2}}
+            </table>
+            <div class="d-grid gap-2 col-8 mx-auto opacity-75">
+              <button class="btn btn-primary" type="submit">Register</button>
+            </div>
+          </form>
+      </div>
+        <div class="card-footer mb-1">
+          <a class="text-muted" style="decoration:none" href={%url "log-in"%} title="Already User">Already have an account ?</a>
+        </div>
+      </div>
+    </div>
+{%endblock%}

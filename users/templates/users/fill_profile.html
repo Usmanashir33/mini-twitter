@@ -1,0 +1,39 @@
+{%extends 'twitting/base_generic.html'%}
+{%block content%}
+{% if messages%}
+  {%for message in messages%}
+  <div class="alert alert-success alert-dismissible fade show" role="alert">
+    <strong>{{message}}</strong>
+    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+  </div>
+  {%endfor%}
+{%endif%}
+
+    {%if form.errors%}
+        <div class="mx-auto" style="max-width: 40rem;">
+        <div class="alert alert-danger d-sm-flex p-1 align-items-center" role="alert">
+            {{form.address.errors}}
+        </div>
+        </div>
+    {%endif%}
+    <div class="mx-auto" style="max-width: 40rem;">
+    <div class="card text-center mx-auto border-primary">
+        <div class="card-header mb-2 bg-primary opacity-75 text-white">
+          <h3>Add Profile Details Here<h3>
+        </div>
+        <div class='card-body text-black '>
+        <form  class="mb-3" action="" method="post" enctype="multipart/form-data">
+          {%csrf_token%}
+          {{form.as_p}}
+          <div class="d-grid gap-2 col-8 mx-auto opacity-75">
+            <button class="btn btn-primary" type="submit">Save</button>
+          </div>
+        </form>
+      </div>
+        <div class="card-footer mb-1">
+          <a class="text-muted" href="{%url 'index'%}">Skip I'll comeback letter</a>
+        </div>
+      </div>
+    </div>
+
+{%endblock%}

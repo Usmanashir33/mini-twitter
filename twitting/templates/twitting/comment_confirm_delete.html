@@ -1,0 +1,11 @@
+{%extends "twitting/base_generic.html"%}
+{%block content%}
+    <h4 align= "center"> Deleting comment : {{comment}} </h4>
+    <br>
+    <form action = "" method= "post">
+        {%csrf_token%}
+        <p style="color:red"> Are you sure you Need to Permanently Delete this comment ?</p>
+        <input type="submit" value="Yes delete !" class="btn btn-sm btn-primary">
+        <a href="{%url "post-detail" comment.post.id%}" class="btn btn-sm btn-primary">Cancel</a>
+    </form>
+{%endblock%}

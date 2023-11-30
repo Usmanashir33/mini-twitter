@@ -1,0 +1,29 @@
+{%extends "twitting/base_generic.html"%}
+{%block content%}
+{%load static%}
+
+{% include "twitting/nav_top.html"%}
+{% if messages%}
+  {%for message in messages%}
+  <div class="alert alert-success alert-dismissible fade show" role="alert">
+    <strong>{{message}}</strong>
+    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+  </div>
+  {%endfor%}
+{%endif%}
+
+{%for post in post_list%}
+<! in cluding the card for a post through out the page>
+  {% include "twitting/post_card.html" with post=post %}
+{%empty%}
+    <li> No post available yet</li>
+{%endfor%}
+<div class="" style="position:fixed;bottom:40px;right:11px; margin: px;z-index:9999">
+  <a href= "{%url 'add-post'%}">
+    <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="46" height="46" viewBox="0,0,256,256">
+      <g fill="#1e69d7" fill-rule="nonzero" stroke="none" stroke-width="1" stroke-linecap="butt" stroke-linejoin="miter" stroke-miterlimit="10" stroke-dasharray="" stroke-dashoffset="0" font-family="none" font-weight="none" font-size="none" text-anchor="none" style="mix-blend-mode: normal"><g transform="scale(5.12,5.12)"><path d="M25,2c-12.683,0 -23,10.317 -23,23c0,12.683 10.317,23 23,23c12.683,0 23,-10.317 23,-23c0,-12.683 -10.317,-23 -23,-23zM37,26h-11v11h-2v-11h-11v-2h11v-11h2v11h11z"></path></g></g>
+    </svg>
+  </a>
+</div>
+</div>
+{%endblock%}

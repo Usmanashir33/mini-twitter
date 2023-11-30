@@ -1,0 +1,10 @@
+mini_twitter_env/
+_pycache_/
+*.sqlite3/
+*.jpg/
+*.png/
+*.jip/
+*.mp4/
+*.mp3/
+*.avi/
+/media/

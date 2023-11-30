@@ -1,0 +1,35 @@
+<div class="card border" id="{{friend.id}}">
+    <div class="card-body lh-sm fs-sm" style="padding-left:1px">
+      <a href="{{friend.get_abs}}"class="stretched-link" ></a>
+      <small class="text-muted" style="margin-left:35px"> X- Follows You</small>
+        <div class="row ">
+          <div class="col-2" style="">
+            <span >
+                {%if friend.user_pic%}
+                <img src="{{friend.user_pic.url}}"
+                class="rounded-circle"
+                width=35
+                height=35
+                placeholder="gfhfhfh"
+                alt="{{friend.username}}"
+                >
+                {%else%}
+                <img src="{%static 'images/default_profile_pic.png'%}"
+                class="rounded-circle"
+                width=35
+                height=35
+                alt="{{friend.username}}"
+                >
+               {%endif%}
+              </span>
+          </div>
+          <div class="col" style="padding-left:3px">
+            <strong class="" style="">{{friend}}</strong>
+            
+            <a href="assessments/audio _vedio.html"class=" stretched-link btn btn-sm btn-dark rounded-pill position-absolute  position-relative end-0 " style=""> Follow Back</a>
+            <div class=""style="padding-top:px;margin-top:px"><span class="text-muted" style="">@{{friend.username}}</span></div>
+            <div class="">Hello My People I love All Of You . Do you love me please?</div>
+          </div>
+        </div>
+    </div>
+  </div>

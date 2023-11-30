@@ -1,0 +1,120 @@
+{%extends "twitting/base_generic.html"%}
+
+{%block content%}
+<div class="card" style="width: 30rem">
+    <svg
+      class="bd-placeholder-img card-img-top"
+      width="100%"
+      height="180"
+      xmlns="http://www.w3.org/2000/svg"
+      role="img"
+      aria-label="Placeholder: Image cap"
+      preserveAspectRatio="xMidYMid slice"
+      focusable="false"
+    >
+      <title>Placeholder</title>
+      <rect width="100%" height="100%" fill="#868e96"></rect>
+      <text x="50%" y="50%" fill="#dee2e6" dy=".3em">Image cap</text>
+    </svg>
+
+    <div class="card-body">
+      <span>{{user.address}}</span>
+      <span> {{user.date_of_birth}}</span>
+      <span>{{user.register_date}}</span>
+      <span></span>
+
+      <ul class="nav nav-justified">
+        <li class="nav-item">
+          <div
+            class="text-muted mt-2"
+            data-bs-toggle="collapse"
+            data-bs-target="#collapsePosts"
+            aria-expanded="false"
+            aria-controls="collapsePosts"
+          >
+            Posts
+          </div>
+          <div class="collapse" id="collapsePosts">
+            <div class="card card-body">Post Page Elements</div>
+          </div>
+        </li>
+        <li class="nav-item">
+          <div
+            class="text-muted mt-2"
+            data-bs-toggle="collapse"
+            href="#collapseReplies"
+            aria-expanded="false"
+            aria-controls="collapseReplies"
+          >
+            Replies
+          </div>
+          <div class="collapse" id="collapseReplies">
+            <div class="card card-body">Replies Page Elements</div>
+          </div>
+        </li>
+        <li class="nav-item">
+          <div
+            class="text-muted mt-2"
+            data-bs-toggle="collapse"
+            data-toggle="collapse"
+            data-bs-backdrop="collapse"
+            href="#collapseHighlights"
+            aria-expanded="false"
+            aria-controls="collapseHighlights"
+          >
+            Highlights
+          </div>
+          <div class="collapse" id="collapseHighlights">
+            <div class="card card-body">Highlights Page Elements</div>
+          </div>
+        </li>
+        <li class="nav-item">
+          <div
+            class="text-muted mt-2"
+            data-bs-toggle="collapse"
+            href="#collapseMedia"
+            aria-expanded="false"
+            aria-controls="collapseMedia"
+          >
+            Media
+          </div>
+          <div class="collapse" id="collapseMedia">
+            <div class="card card-body">Media Page Elements</div>
+          </div>
+        </li>
+        <li class="nav-item">
+          <div
+            class="text-muted mt-2"
+            data-bs-toggle="collapse"
+            href="#collapseLikes"
+            aria-expanded="false"
+            aria-controls="collapseLikes"
+          >
+            Likes
+          </div>
+          <div class="collapse" id="collapseLikes">
+            <div class="card card-body">Likes Page Elements</div>
+          </div>
+        </li>
+      </ul>
+    </div>
+  </div>
+
+
+
+<hr>
+<div id ="profile" style="margin-top:5px;margin-left:30px">
+    <a class="btn btn-sm btn-secondary" href="{%url 'profile-update'%}">Edit Profile</a>
+    <hr>
+    <p><strong>User Id : </strong>{{profile.id}}</p>
+    <p><strong>Username : </strong>{{profile.username}}</p>
+    <p><strong>First Name : </strong>{{profile.first_name}}</p>
+    <p><strong>Middle Name : </strong>{{profile.middle_name}}</p>
+    <p><strong>Last Name : </strong>{{profile.last_name}}</p>
+    <p><strong>Date Of Birth : </strong>{{profile.date_of_birth}}</p>
+    <p><strong>Gender : </strong>{{profile.gender}}</p>
+    <p><strong>Email : </strong>{{profile.email}}</p>
+    <p><strong>Phone Number : </strong>{{profile.phone_number}}</p>
+    
+</div>
+{%endblock%}

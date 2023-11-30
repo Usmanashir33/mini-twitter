@@ -1,0 +1,38 @@
+{%extends "twitting/base_generic.html"%}
+{%block content%}
+<div
+class="card mx-auto text-" style="width: 50rem; background-color:gray "
+>
+<div class="card-body text-center">
+  <span style="color: black">
+    <h3>WELCOME TO MINI-TWITTER</h3>
+  </span>
+  <span style="color:white ">
+    <p>
+      I'am elited to wellcome everybody who has registered with this
+      project <b> Mini-Twitter</b> its with aim to test my learning
+      perpomance nd to see what good thing iam capable to accomplish at
+      this moment. I look very serious on how the t Twitter thats
+      developed by the <i><b>Elon Mask</b></i> is organised nd framed.So i
+      look forward to coppying the attributes, nd i hope that will give me
+      caurage to put more effort on the journey.
+    </p>
+  </span>
+</div>
+<div class="card-footer text-black text-center">
+  {%if user.is_authenticated %}
+  {%else%}
+  <span style="color: ">
+    <p>
+      To Access The service You Must Accept All Our Terms and Conditions.
+    </p>
+  </span>
+  <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+    <a href={%url "register"%}><button class="btn btn-sm btn-primary me-md-2" type="button">Register</button></a>
+    <a href={%url "login"%}><button class="btn btn-sm btn-secondary me-md-2" type="button">Login</button></a>
+  </div>
+  {%endif%}
+</DIV>
+</div>
+</div>
+{%endblock%}
